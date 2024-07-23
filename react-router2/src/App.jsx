@@ -1,9 +1,17 @@
 import React, { Fragment } from "react";
-import { BrowserRouter as Router, Routes, Route, Link, Outlet } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Link,
+  Outlet,
+} from "react-router-dom";
 import Welcome from "./Welcome";
 import { Counter1 } from "./Counter1";
 import { ShowGitHubUser } from "./ShowGitHubUser";
-import { NotFound } from "./NotFound"
+import { NotFound } from "./NotFound";
+import { GitHubUserList } from "./GitHubUserList";
+import { GitHubUserIndex } from "./GitHubUserIndex";
 
 function App() {
   return (
@@ -23,9 +31,13 @@ function App() {
         <Outlet />
       </div>
       <Routes>
-        <Route path="/" element={<Welcome name="Maurilio Valenti"/>} />
+        <Route path="/" element={<Welcome name="Maurilio Valenti" />} />
         <Route path="/counter" element={<Counter1 />} />
-        <Route path="/users/:username" element={<ShowGitHubUser />} />
+        <Route path="/users" element={<GitHubUserList />}>
+        <Route index element={<GitHubUserIndex />} />
+          <Route path=":username" element={<ShowGitHubUser />} />
+        </Route>
+  
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Fragment>

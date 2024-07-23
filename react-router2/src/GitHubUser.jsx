@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
 
 export function GitHubUser({ username }) {
-  const [data, setData] = useState(null);
+  const [data, setData] = useState([]);
 
   useEffect(() => {
     fetch(`https://api.github.com/users/${username}`)
       .then((response) => response.json())
-      .then((json) => {
-        console.log(json);
-        setData(json);
+      .then((data) => {
+        console.log(data);
+        setData(data);
       });
   }, [username]);
 
